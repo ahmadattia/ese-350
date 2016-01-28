@@ -11,9 +11,6 @@ unsigned long pulse_width;
 	
 
 ISR(TIMER1_CAPT_vect){
-	// if(PINB & 0x01){
-	// 	PORTB ^= 0x20;
-	// }
 	TCCR1B ^= 0x40;
 	PORTB ^= 0x20;
 
@@ -29,19 +26,7 @@ int main(void)
 	TCCR1B |= 0x01; //enable timer
 	TCCR1B |= 0x40; //capture rising edge
 	TIMSK1 |= 0x20; //enable interrupt
-	TIFR1 |= 0x20; // clear the input flag
+	TIFR1 |= 0x20; // clear the input flagt 	 
 	sei(); // enable all interrupts.
-	// while (!(TIFR1 & 0x20));
-	
-	// edge1 = ICR1;
-	// TCCR1B &= 0xBF;
-	// TIFR1 |= 0x20;
-	
-	// while(!(TIFR1 & 0x20));
-	// edge2 = ICR1;
-	
-
-	
-	//printf("pulse width = %int\n", edge1);
 	for(;;);
 }
